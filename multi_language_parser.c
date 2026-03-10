@@ -7,10 +7,34 @@
 extern const TSLanguage *tree_sitter_python();
 extern const TSLanguage *tree_sitter_c();
 
-void print_ast(TSNode root){
-    char* string  = ts_node_string(root);
-    printf("AST: %s\n", string);
-    free(string);
+void print_node_recursive(TSNode node, int depth) {
+    const char *type = ts_node_type(node);
+    uint32_t start = ts_node_start_byte(node);
+    uint32_t end = ts_node_end_byte(node);
+
+    // Print indentation
+    for (int i = 0; i < depth; i++) printf("  ");
+
+    // Print node type and range
+    printf("%s [%u - %u]", type, start, end);
+
+    // If it's a leaf node (no children), print its text content (shortened if too long)
+    uint32_t child_count = ts_node_child_count(node);
+    if (child_count == 0) {
+        printf(": \"(leaf)\"");
+    }
+    printf("\n");
+
+    // Recursively print children
+    for (uint32_t i = 0; i < child_count; i++) {
+        print_node_recursive(ts_node_child(node, i), depth + 1);
+    }
+}
+
+void print_ast(TSNode root) {
+    printf("--- Abstract Syntax Tree ---\n");
+    print_node_recursive(root, 0);
+    printf("---------------------------\n");
 }
 
 // Function to find Python Exports (e.g., 'def sum')
