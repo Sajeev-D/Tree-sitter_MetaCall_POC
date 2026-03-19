@@ -7,7 +7,7 @@
 extern const TSLanguage *tree_sitter_python();
 extern const TSLanguage *tree_sitter_c();
 
-// --- Global Symbol Table (Hash Map) ---
+// Global Symbol Table (Hash Map)
 #define HASH_SIZE 101
 
 typedef struct SymbolNode {
@@ -45,7 +45,7 @@ SymbolNode* find_symbol(const char *name) {
     return NULL;
 }
 
-// --- Dependency Tracking ---
+// Dependency Tracking
 typedef struct {
     char *from_file;
     char *symbol;
