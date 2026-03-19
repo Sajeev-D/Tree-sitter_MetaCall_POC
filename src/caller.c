@@ -7,7 +7,7 @@ int main() {
         return 1;
     }
 
-    const char* py_script_name = "sum.py";
+    const char* py_script_name = "src/sum.py";
     if (metacall_load_from_file("py", &py_script_name, 1, NULL) != 0) {
         fprintf(stderr, "Failed to load Python script\n");
         metacall_destroy();

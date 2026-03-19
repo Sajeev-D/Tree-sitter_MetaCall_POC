@@ -1,6 +1,6 @@
 [submodule "tree-sitter-c"]
-	path = tree-sitter-c
+	path = grammar_for_tree-sitter/tree-sitter-c
 	url = https://github.com/tree-sitter/tree-sitter-c.git
 [submodule "tree-sitter-python"]
-	path = tree-sitter-python
+	path = grammar_for_tree-sitter/tree-sitter-python
 	url = https://github.com/tree-sitter/tree-sitter-python.git
